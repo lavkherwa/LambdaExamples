@@ -4,6 +4,12 @@ package com.lav.lambda;
  * Thread variables are local to a specific thread 
  * and are therefore thread safe, this is introduced to improve 
  * efficiency and maintain integrity
+ * 
+ * Spring uses this at a lot of places
+ *   - SecurityContextHolder
+ *   - RequestContextHolder
+ *   - LocaleContextHolder
+ * 
  */
 
 public class ThreadLocalExample {
@@ -13,7 +19,14 @@ public class ThreadLocalExample {
 	public static void main(String[] args) {
 
 		for (int i = 0; i < 10; i++) {
-			new Thread(() -> System.out.println("Output is: " + ThreadLocalExample.threadVariable.get())).start();
+			new Thread(() -> {
+				System.out.println("Output is: " + ThreadLocalExample.threadVariable.get());
+
+				// After this remove the value from thread local
+				ThreadLocalExample.threadVariable.remove();
+			}
+
+			).start();
 		}
 
 	}
