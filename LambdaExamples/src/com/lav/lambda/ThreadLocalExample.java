@@ -1,5 +1,7 @@
 package com.lav.lambda;
 
+import java.util.UUID;
+
 /*
  * Thread variables are local to a specific thread 
  * and are therefore thread safe, this is introduced to improve 
@@ -14,13 +16,14 @@ package com.lav.lambda;
 
 public class ThreadLocalExample {
 
-	public static ThreadLocal<String> threadVariable = ThreadLocal.withInitial(() -> new String("Hello there!"));
+	public static ThreadLocal<String> threadVariable = ThreadLocal.withInitial(() -> UUID.randomUUID().toString());
 
 	public static void main(String[] args) {
 
 		for (int i = 0; i < 10; i++) {
 			new Thread(() -> {
-				System.out.println("Output is: " + ThreadLocalExample.threadVariable.get());
+				System.out.println("Value of thread local variable in current thread is: "
+						+ ThreadLocalExample.threadVariable.get());
 
 				// After this remove the value from thread local
 				ThreadLocalExample.threadVariable.remove();
