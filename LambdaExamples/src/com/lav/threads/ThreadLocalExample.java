@@ -1,4 +1,4 @@
-package com.lav.lambda;
+package com.lav.threads;
 
 import java.util.UUID;
 
@@ -22,7 +22,10 @@ public class ThreadLocalExample {
 
 		for (int i = 0; i < 10; i++) {
 			new Thread(() -> {
-				System.out.println("Value of thread local variable in current thread is: "
+				System.out.println("Value of thread local variable in current thread before is: "
+						+ ThreadLocalExample.threadVariable.get());
+				ThreadLocalExample.threadVariable.set(UUID.randomUUID().toString());
+				System.out.println("Value of thread local variable in current thread after is: "
 						+ ThreadLocalExample.threadVariable.get());
 
 				// After this remove the value from thread local
