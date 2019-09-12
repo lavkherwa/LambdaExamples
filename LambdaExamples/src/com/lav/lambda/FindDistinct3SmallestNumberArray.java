@@ -12,7 +12,8 @@ public class FindDistinct3SmallestNumberArray {
 				.of(numbers)//
 				.distinct()//
 				.sorted()//
-				.limit(3).forEach(System.out::println);
+				.limit(3)//
+				.forEach(System.out::println);
 
 	}
 
