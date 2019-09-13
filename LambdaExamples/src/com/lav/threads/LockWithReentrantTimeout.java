@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class LockWithReentrantTimeout {
 
 	ReentrantLock r1 = new ReentrantLock();
-	ReentrantLock r2 = new ReentrantLock();
+	ReentrantLock r2 = new ReentrantLock(); 
 
 	public void execute() {
 		new Thread(() -> {
